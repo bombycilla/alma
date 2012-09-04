@@ -40,7 +40,7 @@ function alma_user_debt_list($account) {
       foreach ($debts['debts'] as $id => $debt) {
         $return[$id] = array(
           'id' => $id,
-          'display_title' => $debt['note'],
+          'display_title' => alma_debt_types($debt['type']) . ($debt['note'] ? ' (' . $debt['note'] . ')' : ""),
           'payable' => TRUE,
           'date' => $debt['date'],
           'amount' => $debt['amount'],
@@ -49,4 +49,43 @@ function alma_user_debt_list($account) {
     }
   }
   return $return;
+}
+
+function alma_debt_types($debttype) {
+  switch ($debttype):
+    case 'overdueFeeInvoiceDebt': 
+        return t('overdue Fee Invoice Debt');
+    case 'overdueFeeDebt': 
+        return t('overdue Fee Debt');
+    case 'loanFeeDebt': 
+        return t('loan Fee Debt');
+    case 'reservationPickupFeeDebt': 
+        return t('reservation Pickup Fee Debt');
+    case 'reservationFeeDebt': 
+        return t('reservation Fee Debt');
+    case 'deleteReservationFeeDebt': 
+        return t('delete Reservation Fee Debt');
+    case 'illFeeDebt': 
+        return t('ill Fee Debt');
+    case 'smsReservationFeeDebt': 
+        return t('sms Reservation Fee Debt');
+    case 'smsReminderFeeDebt': 
+        return t('sms Reminder Fee Debt');
+    case 'smsRecall1FeeDebt': 
+        return t('sms Recall 1. Fee Debt');
+    case 'smsRecall2FeeDebt': 
+        return t('sms Recall 2. Fee Debt');
+    case 'smsRecall3FeeDebt': 
+        return t('sms Recall 3. Fee Debt');
+    case 'smsRecall4FeeDebt': 
+        return t('sms Recall 4. Fee Debt');
+    case 'smsRecall5FeeDebt': 
+        return t('sms Recall 5. Fee Debt');
+    case 'emailReminderFeeDebt': 
+        return t('email Reminder Fee Debt');
+    case 'otherFeeDebt': 
+        return t('other Fee Debt');
+    default: 
+        return t($debttype);
+  endswitch;
 }
