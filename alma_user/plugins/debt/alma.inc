@@ -52,7 +52,7 @@ function alma_user_debt_list($account) {
 }
 
 function alma_debt_types($debttype) {
-  switch ($debttype):
+  switch ($debttype){
     case 'overdueFeeInvoiceDebt': 
         return t('overdue Fee Invoice Debt');
     case 'overdueFeeDebt': 
@@ -87,5 +87,5 @@ function alma_debt_types($debttype) {
         return t('other Fee Debt');
     default: 
         return t($debttype);
-  endswitch;
+  };
 }
