@@ -259,6 +259,7 @@ class AlmaClient {
       'addresses' => array(),
       'mails' => array(),
       'phones' => array(),
+      'category' =>  $info->getAttribute('patronCategory'),
     );
 
     foreach ($info->getElementsByTagName('address') as $address) {
